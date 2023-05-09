@@ -36,14 +36,14 @@ export default function Rank(count) {
                 <div>🥈</div>
                 <p>
                   <img src={Usa} alt="Usa" />
-                  {countNum-10}
+                  {countNum}
                 </p>
               </li>
               <li>
                 <div>🥉</div>
                 <p>
                   <img src={Japan} alt="Japan" />
-                  {countNum-20}
+                  {countNum}
                 </p>
               </li>
             </ul>
