@@ -1,62 +1,62 @@
-import React, { useState } from 'react'
-import styled from 'styled-components';
-import Korea from '../assets/image/korea.svg';
-import Japan from '../assets/image/japan.svg';
-import Usa from '../assets/image/usa.svg';
+import React, { useState } from "react";
+import styled from "styled-components";
+import Korea from "../assets/image/korea.svg";
+import Japan from "../assets/image/japan.svg";
+import Usa from "../assets/image/usa.svg";
 
-export default function Rank() {
-    const [menu, setMenu] = useState(false);
-    const clickRank = () => {
-        if (menu === true) {
-            setMenu(!menu);
-        } else {
-            setMenu(true);
-        }
-    };
+export default function Rank(count) {
+  const [countNum, setCountNum] = useState(0);
+  const [menu, setMenu] = useState(false);
+  const clickRank = () => {
+    if (menu === true) {
+      setMenu(!menu);
+    } else {
+      setCountNum(count.count);
+      setMenu(true);
+    }
+  };
 
-    return (
-        <Wrap>
-            <RankIcon onClick={clickRank}>🏆</RankIcon>
-            {menu ? (
-                <RankList>
-                    <RankBox onClick={clickRank}>
-                        <RankIcon onClick={clickRank}/>
-                            <ul>
-                                <li>
-                                    <div>
-                                        🥇 <img src={Korea} alt="korea" />
-                                    </div>
-                                    9,129,318,923
-                                </li>
-                                <li>
-                                    <div>
-                                        🥈 <img src={Usa} alt="Usa" />
-                                    </div>
-                                    318,923
-                                </li>
-                                <li>
-                                    <div>
-                                        🥉 <img src={Japan} alt="Japan" />
-                                    </div>
-                                    923
-                                </li>
-                            </ul>
-                    </RankBox>
-                </RankList>
-
-            )
-                :
-                ""}
-        </Wrap>
-    )
+  return (
+    <div>
+      <Box method="post" onClick={clickRank}>
+        🏆
+      </Box>
+      {menu ? (
+        <RankList>
+          <RankBox onClick={clickRank}>
+            <ul>
+              <li>
+                <div>🥇</div>
+                <p>
+                  <img src={Korea} alt="korea" />
+                  {countNum}
+                </p>
+              </li>
+              <li>
+                <div>🥈</div>
+                <p>
+                  <img src={Usa} alt="Usa" />
+                  {countNum-10}
+                </p>
+              </li>
+              <li>
+                <div>🥉</div>
+                <p>
+                  <img src={Japan} alt="Japan" />
+                  {countNum-20}
+                </p>
+              </li>
+            </ul>
+          </RankBox>
+        </RankList>
+      ) : (
+        ""
+      )}
+    </div>
+  );
 }
 
-const Wrap = styled.div`
-  padding: 20px;
-`;
-
-const RankIcon = styled.div`
-  width: 20px;
+const Box = styled.div`
   font-size: 30px;
 `;
 
@@ -76,7 +76,14 @@ const RankBox = styled.div`
       color: #000;
       height: 50px;
       > div {
+        padding-right: 5px;
         line-height: 25px;
+      }
+      > p {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
         > img {
           width: 25px;
           border-radius: 5px;
